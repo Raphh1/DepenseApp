@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo1.controller.AddExpenseDialogController">
+
+    <content>
+        <GridPane hgap="10" vgap="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Formulaire -->
+
+            <Label text="Période" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="periodeField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Logement" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="logementField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Nourriture" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="nourritureField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Sorties" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="sortiesField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Transport" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="transportField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Voyage" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="voyageField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="Impôts" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="impotsField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Autres" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="autresField" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+        </GridPane>
+    </content>
+
+    <buttonTypes>
+        <ButtonType text="Ajouter" buttonData="OK_DONE"/>
+        <ButtonType text="Annuler" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>
