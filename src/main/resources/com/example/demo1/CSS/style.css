@@ -2,7 +2,135 @@
 .root {
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-background-color: linear-gradient(to bottom right, #f0f2f5, #e6ecf0);
-    -fx-padding: 30;
+    -fx-padding: 0 20 20 20; /* Moins de padding sur les côtés pour plus d'espace */
+}
+
+/* Styles pour le header */
+.header-container {
+    -fx-background-color: linear-gradient(to bottom, #34495e, #2c3e50);
+    -fx-padding: 0;
+    -fx-border-color: #1a252f;
+    -fx-border-width: 0 0 2 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2);
+}
+
+/* Menu Bar */
+.menu-bar {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 8 15;
+}
+
+.menu {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.menu:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 4;
+}
+
+.menu .label {
+    -fx-text-fill: white;
+}
+
+/* Context Menu (sous-menu déroulant) - Styles JavaFX spécifiques */
+
+/* Le popup du menu contextuel */
+.context-menu {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0, 0, 2);
+    -fx-padding: 3;
+    -fx-spacing: 0;
+    -fx-min-width: -1;
+    -fx-pref-width: -1;
+    -fx-max-width: -1;
+}
+
+/* Conteneur du popup */
+.context-menu > .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.context-menu > .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.context-menu > .scroll-pane > .viewport > .content {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* Menu Items dans le popup */
+.context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 3;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-alignment: CENTER_LEFT;
+    -fx-graphic-text-gap: 6;
+    -fx-min-width: -1;
+    -fx-pref-width: -1;
+    -fx-max-width: -1;
+}
+
+.context-menu .menu-item:hover {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.context-menu .menu-item:focused {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+}
+
+.context-menu .menu-item .label {
+    -fx-text-fill: inherit;
+    -fx-padding: 0;
+}
+
+/* Style alternatif pour forcer l'application */
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.menu-item:hover {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-background-radius: 4;
+}
+
+.menu-item:focused {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+}
+
+.menu-item .label {
+    -fx-text-fill: inherit;
+    -fx-padding: 0;
 }
 
 /* Titre principal */
@@ -15,9 +143,9 @@
 }
 
 /* TableView */
-.table-view {*
-    -fx-max-width: 740px;
-    -fx-min-width: 740px;
+.table-view {
+    -fx-max-width: 1200px;
+    -fx-min-width: 1200px;
     -fx-background-color: white;
     -fx-border-color: #dcdcdc;
     -fx-border-radius: 5;
@@ -97,5 +225,145 @@
 
 .btn-add:hover {
     -fx-background-color: #2ecc71;
+}
+
+/* Currency Switch Styles */
+.currency-switch {
+    -fx-padding: 5;
+}
+
+.currency-switch-container {
+    -fx-background-color: transparent;
+}
+
+.currency-switch-background {
+    -fx-fill: linear-gradient(to bottom, #ecf0f1, #d5dbdb);
+    -fx-stroke: #bdc3c7;
+    -fx-stroke-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+}
+
+.currency-switch-thumb {
+    -fx-fill: linear-gradient(to bottom, #3498db, #2980b9);
+    -fx-stroke: #2471a3;
+    -fx-stroke-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2);
+}
+
+.currency-switch-label {
+    -fx-text-fill: #34495e;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.currency-switch-label.active {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Styles pour le sélecteur de devise */
+.currency-selector {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f8f9fa);
+    -fx-border-color: #34495e;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #2c3e50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);
+    -fx-cursor: hand;
+}
+
+.currency-selector:hover {
+    -fx-border-color: #3498db;
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f1f8ff);
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.3), 4, 0, 0, 1);
+}
+
+.currency-selector:focused {
+    -fx-border-color: #3498db;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.4), 4, 0, 0, 1);
+}
+
+.currency-selector .arrow {
+    -fx-background-color: #34495e;
+}
+
+.currency-selector:hover .arrow {
+    -fx-background-color: #3498db;
+}
+
+.currency-selector .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 13px;
+}
+
+.currency-selector .list-cell:filled:hover {
+    -fx-background-color: #ecf0f1;
+}
+
+.currency-selector .list-cell:filled:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+/* Styles très spécifiques pour forcer la taille exacte du menu contextuel */
+.menu-button .context-menu {
+    -fx-padding: 2;
+    -fx-background-insets: 0;
+    -fx-min-width: -1;
+    -fx-pref-width: -1;
+    -fx-max-width: -1;
+}
+
+.menu .context-menu {
+    -fx-padding: 2;
+    -fx-background-insets: 0;
+    -fx-min-width: -1;
+    -fx-pref-width: -1;
+    -fx-max-width: -1;
+}
+
+/* Forcer la taille minimale pour éviter les débordements */
+.context-menu {
+    -fx-padding: 2;
+    -fx-background-insets: 0;
+    -fx-spacing: 0;
+    -fx-min-width: -1;
+    -fx-pref-width: -1;
+    -fx-max-width: -1;
+    -fx-fit-to-width: true;
+}
+
+/* Supprimer tout padding inutile des conteneurs */
+.context-menu > .scroll-pane {
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-fit-to-width: true;
+}
+
+.context-menu > .scroll-pane > .viewport {
+    -fx-background-insets: 0;
+    -fx-fit-to-width: true;
+}
+
+.context-menu > .scroll-pane > .viewport > .content {
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-spacing: 0;
+}
+
+/* Styles compacts pour les menu items */
+.context-menu .menu-item {
+    -fx-padding: 6 12;
+    -fx-background-insets: 0;
+    -fx-min-width: -1;
+    -fx-pref-width: -1;
+    -fx-max-width: -1;
 }
 

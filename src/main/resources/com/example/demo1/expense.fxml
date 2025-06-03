@@ -5,35 +5,46 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.demo1.controller.ExpenseController"
-      spacing="10" alignment="TOP_CENTER">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo1.controller.ExpenseController">
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+    <!-- Menu partagé -->
+    <top>
+        <fx:include source="header.fxml"/>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
 
     <!-- Titre stylisé -->
     <Label text="Suivi des Dépenses" styleClass="label-title" />
 
     <!-- Tableau des dépenses stylisé -->
-    <TableView fx:id="expenseTable" styleClass="table-view" prefWidth="740">
+    <TableView fx:id="expenseTable" styleClass="table-view" prefWidth="1200">
 
     <columns>
             <TableColumn fx:id="periodeColumn" text="Période" prefWidth="100" styleClass="table-column"/>
-            <TableColumn fx:id="totalColumn" text="Total" prefWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="logementColumn" text="Logement" prefWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="nourritureColumn" text="Nourriture" prefWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="sortiesColumn" text="Sorties" prefWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="transportColumn" text="Transport" prefWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="voyageColumn" text="Voyage" prefWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="impotsColumn" text="Impôts" prefWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="autresColumn" text="Autres" prefWidth="80" styleClass="table-column"/>
+            <TableColumn fx:id="totalColumn" text="Total" prefWidth="90" styleClass="table-column"/>
+            <TableColumn fx:id="logementColumn" text="Logement" prefWidth="100" styleClass="table-column"/>
+            <TableColumn fx:id="nourritureColumn" text="Nourriture" prefWidth="100" styleClass="table-column"/>
+            <TableColumn fx:id="sortiesColumn" text="Sorties" prefWidth="90" styleClass="table-column"/>
+            <TableColumn fx:id="transportColumn" text="Transport" prefWidth="100" styleClass="table-column"/>
+            <TableColumn fx:id="voyageColumn" text="Voyage" prefWidth="90" styleClass="table-column"/>
+            <TableColumn fx:id="impotsColumn" text="Impôts" prefWidth="90" styleClass="table-column"/>
+            <TableColumn fx:id="autresColumn" text="Autres" prefWidth="90" styleClass="table-column"/>
+            <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150" styleClass="table-column"/>
         </columns>
     </TableView>
 
     <Button fx:id="addButton" text="Ajouter une dépense" onAction="#handleAddExpense" styleClass="btn-add" />
 
-</VBox>
+        </VBox>
+    </center>
+
+</BorderPane>
 

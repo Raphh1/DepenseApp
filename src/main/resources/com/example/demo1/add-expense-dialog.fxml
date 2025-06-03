@@ -17,7 +17,7 @@
             <!-- Formulaire -->
 
             <Label text="Période" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="periodeField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <DatePicker fx:id="periodeDatePicker" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
             <Label text="Logement" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             <TextField fx:id="logementField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>

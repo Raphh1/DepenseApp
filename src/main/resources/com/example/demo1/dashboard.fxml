@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo1.controller.DashboardController">
+
+    <!-- Menu partagé -->
+    <top>
+        <fx:include source="header.fxml"/>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <VBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 30 20 20 20; -fx-background-color: transparent;">
+            <!-- Section de sélection du mois -->
+            <VBox spacing="15" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+                <Label text="Sélectionnez un mois :" style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2c3e50;" />
+                <DatePicker fx:id="monthDatePicker" prefWidth="250"/>
+            </VBox>
+
+            <!-- Section Graphiques -->
+            <HBox spacing="30" alignment="CENTER">
+                <!-- PieChart Container -->
+                <VBox spacing="15" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+                    <Label text="Répartition des dépenses" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                    <PieChart fx:id="pieChart" prefHeight="300" prefWidth="400"/>
+                </VBox>
+
+                <!-- LineChart Container -->
+                <VBox spacing="15" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+                    <Label text="Évolution mensuelle" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                    <LineChart fx:id="lineChart" prefHeight="300" prefWidth="400">
+                        <xAxis>
+                            <CategoryAxis label="Date"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Montant (€)"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

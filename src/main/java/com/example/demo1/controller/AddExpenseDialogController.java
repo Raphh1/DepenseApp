@@ -3,11 +3,19 @@ package com.example.demo1.controller;
 import com.example.demo1.model.Expense;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class AddExpenseDialogController {
 
-    @FXML private TextField periodeField;
+    private static final Logger logger = LoggerFactory.getLogger(AddExpenseDialogController.class);
+
+    @FXML private DatePicker periodeDatePicker;
     @FXML private TextField logementField;
     @FXML private TextField nourritureField;
     @FXML private TextField sortiesField;
@@ -27,11 +35,11 @@ public class AddExpenseDialogController {
      */
     public void bindValidation(Button addButton) {
         Runnable validate = () -> {
-            boolean valid = !periodeField.getText().isBlank();
+            boolean valid = periodeDatePicker.getValue() != null;
             addButton.setDisable(!valid);
         };
 
-        periodeField.textProperty().addListener((obs, oldVal, newVal) -> validate.run());
+        periodeDatePicker.setOnAction(e -> validate.run());
         validate.run(); // initialisation
     }
 
@@ -39,18 +47,21 @@ public class AddExpenseDialogController {
      * Crée un objet Expense à partir des champs (avec 0 pour les champs vides).
      */
     public void createExpense() {
-        double logement = parse(logementField);
-        double nourriture = parse(nourritureField);
-        double sorties = parse(sortiesField);
-        double transport = parse(transportField);
-        double voyage = parse(voyageField);
-        double impots = parse(impotsField);
-        double autres = parse(autresField);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String periode = periodeDatePicker.getValue().format(formatter); // Format: "2025-06"
+        
+        double logement = parse(logementField, "logement");
+        double nourriture = parse(nourritureField, "nourriture");
+        double sorties = parse(sortiesField, "sorties");
+        double transport = parse(transportField, "transport");
+        double voyage = parse(voyageField, "voyage");
+        double impots = parse(impotsField, "impots");
+        double autres = parse(autresField, "autres");
 
         double total = logement + nourriture + sorties + transport + voyage + impots + autres;
 
         createdExpense = new Expense(
-                periodeField.getText(),
+                periode,
                 total,
                 logement,
                 nourriture,
@@ -60,12 +71,42 @@ public class AddExpenseDialogController {
                 impots,
                 autres
         );
+
+        logger.info("Nouvelle dépense créée pour la période '{}', total = {}", periode, total);
     }
 
-    private double parse(TextField tf) {
+    /**
+     * Pré-remplit les champs avec les données d'une dépense existante (pour l'édition).
+     */
+    public void setExpense(Expense expense) {
+        if (expense != null) {
+            // Convertir la période string vers LocalDate
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+                LocalDate date = LocalDate.parse(expense.getPeriode() + "-01", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                periodeDatePicker.setValue(date);
+            } catch (Exception e) {
+                logger.warn("Impossible de parser la période '{}', utilisation de la date actuelle", expense.getPeriode());
+                periodeDatePicker.setValue(LocalDate.now());
+            }
+            
+            logementField.setText(String.valueOf(expense.getLogement()));
+            nourritureField.setText(String.valueOf(expense.getNourriture()));
+            sortiesField.setText(String.valueOf(expense.getSorties()));
+            transportField.setText(String.valueOf(expense.getTransport()));
+            voyageField.setText(String.valueOf(expense.getVoyage()));
+            impotsField.setText(String.valueOf(expense.getImpots()));
+            autresField.setText(String.valueOf(expense.getAutres()));
+            
+            logger.info("Champs pré-remplis avec les données de la dépense : {}", expense.getPeriode());
+        }
+    }
+
+    private double parse(TextField tf, String label) {
         try {
             return Double.parseDouble(tf.getText());
         } catch (NumberFormatException e) {
+            logger.warn("Champ '{}' invalide ou vide. Remplacé par 0.", label);
             return 0;
         }
     }

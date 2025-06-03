@@ -36,27 +36,29 @@ javafx {
 }
 
 dependencies {
+    // Tests
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-}
-
-dependencies {
+    
+    // Logging
     implementation("org.slf4j:slf4j-api:2.0.9")
     implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0")
     implementation("org.apache.logging.log4j:log4j-core:2.20.0")
     implementation("org.apache.logging.log4j:log4j-api:2.20.0")
+    
+    // Database
+    implementation("org.xerial:sqlite-jdbc:3.43.2.2")
+    
+    // JSON parsing
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
 }
-
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-dependencies {
-    implementation("org.xerial:sqlite-jdbc:3.43.2.2")
-}
-
 jlink {
+    addExtraDependencies("log4j")
     options.set(listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"))
     launcher {
         name = "demo1"
