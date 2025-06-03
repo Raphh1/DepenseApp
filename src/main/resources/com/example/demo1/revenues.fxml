@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo1.controller.RevenuesController">
+    <top>
+        <MenuBar>
+            <Menu text="Navigation">
+                <MenuItem text="Tableau de bord" onAction="#goToDashboard"/>
+                <MenuItem text="Dépenses" onAction="#goToExpenses"/>
+            </Menu>
+            <Menu text="File">
+                <MenuItem text="Close" />
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <TableView fx:id="revenuesTable">
+            <columns>
+                <TableColumn text="Type" fx:id="typeColumn" />
+                <TableColumn text="Montant" fx:id="amountColumn" />
+                <TableColumn text="Date" fx:id="dateColumn" />
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <Button text="Ajouter un revenu" onAction="#openAddRevenueDialog" />
+    </bottom>
+</BorderPane>

@@ -3,7 +3,6 @@ package com.example.demo1.controller;
 import com.example.demo1.SceneManager;
 import com.example.demo1.model.Currency;
 import com.example.demo1.utils.CurrencyManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -36,10 +35,10 @@ public class HeaderController implements Initializable {
         currencyComboBox.setValue(currencyManager.getCurrentCurrency());
         
         // Personnaliser l'affichage des éléments
-        currencyComboBox.setCellFactory(new Callback<ListView<Currency>, ListCell<Currency>>() {
+        currencyComboBox.setCellFactory(new Callback<>() {
             @Override
             public ListCell<Currency> call(ListView<Currency> param) {
-                return new ListCell<Currency>() {
+                return new ListCell<>() {
                     @Override
                     protected void updateItem(Currency currency, boolean empty) {
                         super.updateItem(currency, empty);
@@ -54,7 +53,7 @@ public class HeaderController implements Initializable {
         });
         
         // Personnaliser l'affichage de l'élément sélectionné
-        currencyComboBox.setButtonCell(new ListCell<Currency>() {
+        currencyComboBox.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(Currency currency, boolean empty) {
                 super.updateItem(currency, empty);
@@ -82,11 +81,16 @@ public class HeaderController implements Initializable {
         });
     }
 
-    public void goToDashboard(ActionEvent event) {
+    public void goToDashboard() {
         SceneManager.switchTo("dashboard.fxml");
     }
 
-    public void goToExpenses(ActionEvent event) {
+    public void goToExpenses() {
         SceneManager.switchTo("expense.fxml");
+    }
+
+    @FXML
+    private void openRevenuesPage() {
+        SceneManager.switchTo("revenues.fxml");
     }
 }

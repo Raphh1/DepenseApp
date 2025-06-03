@@ -15,24 +15,24 @@
 
     <!-- Contenu principal -->
     <center>
-        <VBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 30 20 20 20; -fx-background-color: transparent;">
+        <VBox spacing="30" alignment="TOP_CENTER" styleClass="main-container">
             <!-- Section de sélection du mois -->
-            <VBox spacing="15" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
-                <Label text="Sélectionnez un mois :" style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2c3e50;" />
-                <DatePicker fx:id="monthDatePicker" prefWidth="250"/>
+            <VBox spacing="15" alignment="CENTER" styleClass="chart-container">
+                <Label text="Sélectionnez un mois :" styleClass="label-title" />
+                <DatePicker fx:id="monthDatePicker" prefWidth="250" styleClass="date-picker"/>
             </VBox>
 
             <!-- Section Graphiques -->
             <HBox spacing="30" alignment="CENTER">
                 <!-- PieChart Container -->
-                <VBox spacing="15" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
-                    <Label text="Répartition des dépenses" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                <VBox spacing="15" alignment="CENTER" styleClass="chart-container">
+                    <Label text="Répartition des dépenses" styleClass="chart-title" />
                     <PieChart fx:id="pieChart" prefHeight="300" prefWidth="400"/>
                 </VBox>
 
                 <!-- LineChart Container -->
-                <VBox spacing="15" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
-                    <Label text="Évolution mensuelle" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                <VBox spacing="15" alignment="CENTER" styleClass="chart-container">
+                    <Label text="Évolution mensuelle" styleClass="chart-title" />
                     <LineChart fx:id="lineChart" prefHeight="300" prefWidth="400">
                         <xAxis>
                             <CategoryAxis label="Date"/>
@@ -41,6 +41,19 @@
                             <NumberAxis label="Montant (€)"/>
                         </yAxis>
                     </LineChart>
+                </VBox>
+
+                <!-- BarChart Container -->
+                <VBox spacing="15" alignment="CENTER" styleClass="chart-container">
+                    <Label text="Comparaison Dépenses vs Revenus" styleClass="chart-title" />
+                    <BarChart fx:id="expensesVsRevenuesChart" prefHeight="300" prefWidth="400">
+                        <xAxis>
+                            <CategoryAxis label="Mois" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Montant (€)" />
+                        </yAxis>
+                    </BarChart>
                 </VBox>
             </HBox>
         </VBox>

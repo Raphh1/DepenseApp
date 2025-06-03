@@ -39,7 +39,9 @@ dependencies {
     // Tests
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-    
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+    testRuntimeOnly("org.testfx:openjfx-monocle:4.0.16-alpha")
+
     // Logging
     implementation("org.slf4j:slf4j-api:2.0.9")
     implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0")
@@ -79,5 +81,4 @@ jlink {
         }
     }
 }
-
 

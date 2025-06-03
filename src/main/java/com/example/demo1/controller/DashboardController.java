@@ -5,15 +5,19 @@ import com.example.demo1.model.Expense;
 import com.example.demo1.utils.ChartUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class DashboardController {
 
@@ -22,6 +26,7 @@ public class DashboardController {
     @FXML private DatePicker monthDatePicker;
     @FXML private PieChart pieChart;
     @FXML private LineChart<String, Number> lineChart;
+    @FXML private BarChart<String, Number> expensesVsRevenuesChart;
 
     @FXML
     public void initialize() {
@@ -40,6 +45,8 @@ public class DashboardController {
                 updateCharts(selectedDate);
             }
         });
+
+        loadExpensesVsRevenuesChart();
     }
 
     private void updateCharts(LocalDate selectedDate) {
@@ -113,5 +120,24 @@ public class DashboardController {
     private void updateLineChart() {
         List<Expense> allExpenses = ExpenseDAO.findAll();
         ChartUtils.populateLineChart(lineChart, allExpenses);
+    }
+
+    /**
+     * Charge le graphique comparatif des dépenses et des revenus
+     */
+    private void loadExpensesVsRevenuesChart() {
+        XYChart.Series<String, Number> expensesSeries = new XYChart.Series<>();
+        expensesSeries.setName("Dépenses");
+        // Ajouter les données des dépenses (exemple statique)
+        expensesSeries.getData().add(new XYChart.Data<>("Janvier", 500));
+        expensesSeries.getData().add(new XYChart.Data<>("Février", 600));
+
+        XYChart.Series<String, Number> revenuesSeries = new XYChart.Series<>();
+        revenuesSeries.setName("Revenus");
+        // Ajouter les données des revenus (exemple statique)
+        revenuesSeries.getData().add(new XYChart.Data<>("Janvier", 800));
+        revenuesSeries.getData().add(new XYChart.Data<>("Février", 700));
+
+        expensesVsRevenuesChart.getData().addAll(expensesSeries, revenuesSeries);
     }
 }

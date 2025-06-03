@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo1.controller.AddRevenueDialogController" spacing="10" alignment="CENTER">
+    <Label text="Ajouter un revenu" />
+    <TextField fx:id="typeField" promptText="Type de revenu" />
+    <TextField fx:id="amountField" promptText="Montant" />
+    <DatePicker fx:id="datePicker" />
+    <Button text="Ajouter" onAction="#addRevenue" />
+</VBox>
